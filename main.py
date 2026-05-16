@@ -1,5 +1,6 @@
 import tkinter as tk
 from settings import Settings
+import frames as fr
 
 app_settings = Settings()
 root = tk.Tk()
@@ -21,54 +22,68 @@ dropdown.configure(width=15, font=("Arial", 12))
 dropdown["menu"].config(font=("Arial", 12))
 dropdown.pack(anchor="w", padx=20)
 
-weight_frame = tk.Frame(screen1, bg="#1a1a2e")
-weight_frame.pack(anchor="w", padx=20, pady=5)
-weight_label = tk.Label(weight_frame, text="Enter Weight:", font=(
-    "Arial", 12), bg="#1a1a2e", fg="white")
-weight_label.pack(side="left")
-weight_entry = tk.Entry(weight_frame, width=15, font=("Arial", 12))
-weight_entry.pack(side="left", padx=10)
 
-height_frame = tk.Frame(screen1, bg="#1a1a2e")
-height_frame.pack(anchor="w", padx=20)
-height_label = tk.Label(height_frame, text="Enter height:", font=(
-    "Arial", 12), bg="#1a1a2e", fg="white")
-height_label.pack(side="left")
-height_entry = tk.Entry(height_frame, width=15, font=("Arial", 12))
-height_entry.pack(side="left", padx=10)
+weight_entry = fr.weight_input(screen1)
 
-age_frame = tk.Frame(screen1, bg="#1a1a2e")
-age_frame.pack(anchor="w", padx=20, pady=5)
-age_label = tk.Label(age_frame, text="Enter Age:", font=(
-    "Arial", 12), bg="#1a1a2e", fg="white")
-age_label.pack(side="left")
-age_entry = tk.Entry(age_frame, width=15, font=("Arial", 12))
-age_entry.pack(side="left", padx=10)
+height_entry = fr.height_input(screen1)
 
-# screen2
+age_entry = fr.age_input(screen1)
+
+
 screen2 = tk.Frame(root, bg="#1a1a2e")
 
 
 def show_screen2():
-    screen1.pack_forget()    # hide screen1
+    screen1.pack_forget()
     screen2.pack(fill="both", expand=True)   # show screen2
 
 
 def combined():
-    get_inputs()
+    result = get_inputs()
+    if result is None:
+        return
+    weight, height, age, gender = result
+    bmi = weight / (height ** 2)
+
+    if gender == "Male":
+        from male import Male
+        ml = Male(bmi)
+        label = tk.Label(screen2, text=ml.print_gender(), font=(
+            "Arial", 12), bg="#1a1a2e", fg="white")
+        label.pack(anchor="w", padx=20)
+
+    if gender == "Female":
+        from female import Female
+        fml = Female(bmi)
+        label = tk.Label(screen2, text=fml.print_gender(), font=(
+            "Arial", 12), bg="#1a1a2e", fg="white")
+        label.pack(anchor="w", padx=20)
+
     show_screen2()
 
 
 def get_inputs():
-    weight = weight_entry.get()
-    height = height_entry.get()
-    age = age_entry.get()
+    if weight_entry.get() == '' or height_entry.get() == '' or age_entry.get() == '':
+        print("Please fill all fields")
+        return
+    weight = float(weight_entry.get())
+    height = float(height_entry.get())
+    age = int(age_entry.get())
     gender = gender_var.get()
     return weight, height, age, gender
+
+
+result = get_inputs()
+if result is None:
+    pass
+else:
+    weight, height, age, gender = result
+    bmi = weight / (height ** 2)
 
 
 btn = tk.Button(screen1, text="Calculate", font=("Arial", 12),
                 bg="#4CAF50", fg="white", command=combined)
 btn.pack(pady=20)
+
 
 root.mainloop()
