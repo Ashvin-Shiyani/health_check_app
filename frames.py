@@ -33,3 +33,27 @@ def age_input(screen1):
     age_entry = tk.Entry(age_frame, width=15, font=("Arial", 12))
     age_entry.pack(side="left", padx=10)
     return age_entry
+
+
+def message(screen1):
+    msg_frame = tk.Frame(screen1, bg="#1a1a2e")
+    msg_frame.pack(anchor="w", padx=20, pady=5)
+    msg_label = tk.Label(msg_frame, text="Please fill all the fields:", font=(
+        "Arial", 12), bg="#1a1a2e", fg="white")
+    msg_label.pack(side="left")
+
+
+def male_frame(screen2, bmi):
+    from male import Male
+    ml = Male(bmi)
+    label = tk.Label(screen2, text=ml.print_gender(), font=(
+        "Arial", 12), bg="#1a1a2e", fg="white")
+    label.pack(anchor="w", padx=20)
+
+
+def female_frame(screen2, bmi):
+    from female import Female
+    fml = Female(bmi)
+    label = tk.Label(screen2, text=fml.print_gender(), font=(
+        "Arial", 12), bg="#1a1a2e", fg="white")
+    label.pack(anchor="w", padx=20)

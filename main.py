@@ -32,39 +32,17 @@ age_entry = fr.age_input(screen1)
 
 screen2 = tk.Frame(root, bg="#1a1a2e")
 
+calcualte_pressed = False
+
 
 def show_screen2():
     screen1.pack_forget()
     screen2.pack(fill="both", expand=True)   # show screen2
 
 
-def combined():
-    result = get_inputs()
-    if result is None:
-        return
-    weight, height, age, gender = result
-    bmi = weight / (height ** 2)
-
-    if gender == "Male":
-        from male import Male
-        ml = Male(bmi)
-        label = tk.Label(screen2, text=ml.print_gender(), font=(
-            "Arial", 12), bg="#1a1a2e", fg="white")
-        label.pack(anchor="w", padx=20)
-
-    if gender == "Female":
-        from female import Female
-        fml = Female(bmi)
-        label = tk.Label(screen2, text=fml.print_gender(), font=(
-            "Arial", 12), bg="#1a1a2e", fg="white")
-        label.pack(anchor="w", padx=20)
-
-    show_screen2()
-
-
 def get_inputs():
-    if weight_entry.get() == '' or height_entry.get() == '' or age_entry.get() == '':
-        print("Please fill all fields")
+    if (weight_entry.get() == '' or height_entry.get() == '' or age_entry.get() == '') and calcualte_pressed:
+        fr.message(screen1)
         return
     weight = float(weight_entry.get())
     height = float(height_entry.get())
@@ -73,12 +51,23 @@ def get_inputs():
     return weight, height, age, gender
 
 
-result = get_inputs()
-if result is None:
-    pass
-else:
+def combined():
+    global calcualte_pressed
+    calcualte_pressed = True
+    result = get_inputs()
+    if result is None:
+        return
     weight, height, age, gender = result
     bmi = weight / (height ** 2)
+    print("combine ran")
+
+    if gender == "Male":
+        fr.male_frame(screen2, bmi)
+
+    if gender == "Female":
+        fr.female_frame(screen2, bmi)
+
+    show_screen2()
 
 
 btn = tk.Button(screen1, text="Calculate", font=("Arial", 12),
