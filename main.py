@@ -1,6 +1,8 @@
 import tkinter as tk
 from settings import Settings
 import frames as fr
+from male import Male
+from female import Female
 
 app_settings = Settings()
 root = tk.Tk()
@@ -65,16 +67,18 @@ def combined():
     else:
         pass
 
-    if gender == "Male":
-        fr.male_frame(screen2, bmi)
-
-    if gender == "Female":
-        fr.female_frame(screen2, bmi)
-
     fr.weight_screen2(screen2, weight)
     fr.height_screen2(screen2, height)
     fr.age_screen2(screen2, age)
     fr.bmi_screen2(screen2, bmi)
+
+    if gender == "Male":
+        fr.male_frame(screen2, bmi)
+        Male.make_bar_chart(bmi, screen2)
+
+    if gender == "Female":
+        fr.female_frame(screen2, bmi)
+        Female.make_bar_chart(bmi, screen2)
 
     show_screen2()
 

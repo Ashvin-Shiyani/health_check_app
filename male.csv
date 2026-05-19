@@ -1,0 +1,7 @@
+bmi_range,bmi_min,bmi_max,category,diabetes_risk_percent,heart_disease_risk_percent,hypertension_risk_percent,stroke_risk_percent,gallstones_risk_percent,high_cholesterol_risk_percent,heart_failure_risk_percent,estimated_deaths_per_100k
+Below 18.5,0,18.4,Underweight,3,8,5,6,4,5,7,180
+18.5 - 24.9,18.5,24.9,Normal,5,10,10,8,7,10,10,120
+25.0 - 29.9,25,29.9,Overweight,19,14,17,12,19,11,18,150
+30.0 - 34.9,30,34.9,Obese Class I,35,22,28,18,28,18,27,210
+35.0 - 39.9,35,39.9,Obese Class II,60,34,40,26,38,25,38,290
+40.0 and above,40,100,Obese Class III,85,48,55,35,50,35,52,420
