@@ -83,6 +83,25 @@ def height_screen2(screen2, height):
     height_label.pack(side="left")
 
 
+def bmi_screen2(screen2, bmi):
+    bmi_frame = tk.Frame(screen2, bg="#1a1a2e")
+    bmi_frame.pack(anchor="w", padx=20, pady=5)
+    if bmi < 18.5:
+        bmi_label = tk.Label(bmi_frame, text=f"Your Underweight since your bmi is :{bmi}", font=(
+            "Arial", 12), bg="#1a1a2e", fg="white")
+    if bmi > 18.5 and bmi < 24.9:
+        bmi_label = tk.Label(bmi_frame, text=f"Your Healthy since your bmi is :{bmi}", font=(
+            "Arial", 12), bg="#1a1a2e", fg="white")
+    if bmi > 25.0 and bmi < 29.9:
+        bmi_label = tk.Label(bmi_frame, text=f"Your Overweight since your bmi is :{bmi}", font=(
+            "Arial", 12), bg="#1a1a2e", fg="white")
+    if bmi > 30.0:
+        bmi_label = tk.Label(bmi_frame, text=f"Your Obese since your bmi is :{bmi}", font=(
+            "Arial", 12), bg="#1a1a2e", fg="white")
+
+    bmi_label.pack(side="left")
+
+
 def error_message(screen1):
     msg_frame = tk.Frame(screen1, bg="#1a1a2e")
     msg_frame.pack(anchor="w", padx=20, pady=5)

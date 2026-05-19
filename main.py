@@ -65,15 +65,16 @@ def combined():
     else:
         pass
 
-    fr.weight_screen2(screen2, weight)
-    fr.height_screen2(screen2, height)
-    fr.age_screen2(screen2, age)
-
     if gender == "Male":
         fr.male_frame(screen2, bmi)
 
     if gender == "Female":
         fr.female_frame(screen2, bmi)
+
+    fr.weight_screen2(screen2, weight)
+    fr.height_screen2(screen2, height)
+    fr.age_screen2(screen2, age)
+    fr.bmi_screen2(screen2, bmi)
 
     show_screen2()
 
