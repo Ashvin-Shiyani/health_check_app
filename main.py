@@ -59,7 +59,15 @@ def combined():
         return
     weight, height, age, gender = result
     bmi = weight / (height ** 2)
-    print("combine ran")
+    if age > 110 or height > 3:
+        fr.error_message(screen1)
+        return
+    else:
+        pass
+
+    fr.weight_screen2(screen2, weight)
+    fr.height_screen2(screen2, height)
+    fr.age_screen2(screen2, age)
 
     if gender == "Male":
         fr.male_frame(screen2, bmi)

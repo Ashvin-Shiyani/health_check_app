@@ -3,4 +3,4 @@ class Female():
         self.bmi = bmi
 
     def print_gender(self):
-        return "Hello Female"
+        return "Female"
