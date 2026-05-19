@@ -75,10 +75,12 @@ def combined():
     if gender == "Male":
         fr.male_frame(screen2, bmi)
         Male.make_bar_chart(bmi, screen2)
+        Male.make_hori_bar_chart(bmi, screen2)
 
     if gender == "Female":
         fr.female_frame(screen2, bmi)
         Female.make_bar_chart(bmi, screen2)
+        Female.make_hori_bar_chart(bmi, screen2)
 
     show_screen2()
 

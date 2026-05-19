@@ -10,3 +10,6 @@ class Male():
 
     def make_bar_chart(bmi, screen2):
         charts.risk_bar_chart("male.csv", bmi, screen2)
+
+    def make_hori_bar_chart(bmi, screen2):
+        charts.hori_bar_chart("male.csv", bmi, screen2)
